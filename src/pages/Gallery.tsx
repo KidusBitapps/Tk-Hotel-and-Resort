@@ -62,36 +62,18 @@ const Gallery = () => {
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {galleryImages.map((image, index) => (
-              <motion.div
+            {galleryImages.map((image) => (
+              <div
                 key={image.id}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
-                viewport={{ once: true }}
-                className="group cursor-pointer"
+                className="cursor-pointer"
                 onClick={() => setSelectedImage(image.src)}
               >
-                <div className="relative aspect-square bg-gray-200 rounded-lg overflow-hidden">
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    onError={(e) => {
-                      e.currentTarget.style.backgroundColor = '#f3f4f6';
-                    }}
-                    onLoad={(e) => {
-                      e.currentTarget.style.backgroundColor = 'transparent';
-                    }}
-                  />
-                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
-                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white text-center">
-                      <p className="font-semibold">{image.alt}</p>
-                      <p className="text-sm text-gray-200">{image.category}</p>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="w-full aspect-square object-cover rounded-lg hover:scale-105 transition-transform duration-300"
+                />
+              </div>
             ))}
           </div>
         </div>
