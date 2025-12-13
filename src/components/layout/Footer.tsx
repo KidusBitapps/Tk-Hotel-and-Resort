@@ -65,13 +65,14 @@ const Footer = () => {
               Quick Links
             </h4>
             <div className="space-y-3">
-              {["Home", "About Us", "Services", "Gallery", "Contact"].map(
+              {["Home", "About Us", "Services", "Gallery", "Book Now", "Contact"].map(
                 (item, index) => {
                   const paths = [
                     "/",
                     "/about",
                     "/services",
                     "/gallery",
+                    "/book",
                     "/contact",
                   ];
                   return (
