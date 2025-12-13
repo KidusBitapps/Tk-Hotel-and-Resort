@@ -5,7 +5,6 @@ import Section from '../components/ui/Section';
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-
   const galleryImages = [
     { id: 1, src: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&h=400&fit=crop', alt: 'Luxury Suite', category: 'Rooms' },
     { id: 2, src: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=400&fit=crop', alt: 'Restaurant Dining', category: 'Dining' },
@@ -22,9 +21,9 @@ const Gallery = () => {
   ];
 
   return (
-    <div className="pt-16">
+    <div className="pt-16" style={{ backgroundColor: 'var(--color-bg-primary)' }}>
       {/* Hero Section */}
-      <section className="relative h-96 flex items-center justify-center bg-gray-900">
+      <section className="relative h-96 flex items-center justify-center bg-black">
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40"
           style={{
@@ -36,7 +35,13 @@ const Gallery = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-5xl font-bold mb-4"
+            className="text-5xl md:text-6xl font-black mb-4"
+            style={{
+              background: 'linear-gradient(135deg, var(--color-gold), var(--color-teal))',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}
           >
             Gallery
           </motion.h1>
@@ -45,6 +50,7 @@ const Gallery = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-xl"
+            style={{ color: 'var(--color-text-secondary)' }}
           >
             Discover the beauty and elegance of TK Hotel & Resort
           </motion.p>
@@ -52,28 +58,48 @@ const Gallery = () => {
       </section>
 
       {/* Gallery Grid */}
-      <Section>
+      <Section className="bg-gradient-to-br from-gray-900 to-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Beautiful Spaces</h2>
-            <p className="text-xl text-gray-600">
+            <h2 
+              className="text-4xl md:text-5xl font-black mb-6"
+              style={{
+                background: 'linear-gradient(135deg, var(--color-gold), var(--color-teal))',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}
+            >
+              Our Beautiful Spaces
+            </h2>
+            <p 
+              className="text-xl"
+              style={{ color: 'var(--color-text-secondary)' }}
+            >
               Take a visual journey through our luxurious facilities and amenities
             </p>
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {galleryImages.map((image) => (
-              <div
+              <motion.div
                 key={image.id}
-                className="cursor-pointer"
+                className="cursor-pointer cursor-glow"
                 onClick={() => setSelectedImage(image.src)}
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
               >
-                <img
-                  src={image.src}
-                  alt={image.alt}
-                  className="w-full aspect-square object-cover rounded-lg hover:scale-105 transition-transform duration-300"
-                />
-              </div>
+                <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg overflow-hidden shadow-theme hover:shadow-theme-hover border border-gold/20">
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    className="w-full aspect-square object-cover"
+                    loading="eager"
+                  />
+                </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -113,10 +139,20 @@ const Gallery = () => {
       )}
 
       {/* Categories */}
-      <Section className="bg-gray-50">
+      <Section className="bg-gradient-to-br from-gray-800 to-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Explore by Category</h2>
+            <h2 
+              className="text-4xl md:text-5xl font-black mb-6"
+              style={{
+                background: 'linear-gradient(135deg, var(--color-gold), var(--color-teal))',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}
+            >
+              Explore by Category
+            </h2>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {['Rooms', 'Dining', 'Facilities', 'Services'].map((category, index) => (
@@ -126,10 +162,16 @@ const Gallery = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="text-center p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer"
+                className="text-center p-6 bg-gradient-to-br from-gray-900 to-black rounded-lg shadow-theme hover:shadow-theme-hover transition-all cursor-pointer cursor-glow border border-teal/20"
+                whileHover={{ scale: 1.05 }}
               >
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">{category}</h3>
-                <p className="text-gray-600">
+                <h3 
+                  className="text-lg font-semibold mb-2"
+                  style={{ color: 'var(--color-text-primary)' }}
+                >
+                  {category}
+                </h3>
+                <p style={{ color: 'var(--color-text-secondary)' }}>
                   {galleryImages.filter(img => img.category === category).length} photos
                 </p>
               </motion.div>

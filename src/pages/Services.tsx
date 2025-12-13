@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import Section from '../components/ui/Section';
-import ServiceCard from '../components/ui/ServiceCard';
+import EmbeddedServiceSection from '../components/ui/EmbeddedServiceSection';
 
 const Services = () => {
   const services = [
@@ -23,33 +23,13 @@ const Services = () => {
       title: 'Spa & Wellness',
       description: 'Rejuvenate your body and mind at our full-service spa. Our skilled therapists offer a range of treatments including traditional Ethiopian healing practices, modern wellness therapies, and relaxation treatments.',
       image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=400&h=300&fit=crop'
-    },
-    {
-      title: 'Swimming Pool',
-      description: 'Take a refreshing dip in our pristine outdoor swimming pool surrounded by lush landscaping. The pool area features comfortable lounging spaces and poolside service for the ultimate relaxation experience.',
-      image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&h=300&fit=crop'
-    },
-    {
-      title: 'Business Center',
-      description: 'Stay productive with our fully equipped business center featuring high-speed internet, printing services, meeting rooms, and conference facilities. Perfect for business travelers and corporate events.',
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop'
-    },
-    {
-      title: 'Concierge Services',
-      description: 'Our knowledgeable concierge team is available to assist with tour arrangements, transportation, restaurant reservations, and local recommendations to help you make the most of your stay in Ethiopia.',
-      image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=300&fit=crop'
-    },
-    {
-      title: 'Airport Transfer',
-      description: 'Enjoy convenient and comfortable transportation with our airport transfer service. Our professional drivers ensure a smooth journey to and from the airport in our fleet of well-maintained vehicles.',
-      image: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&h=300&fit=crop'
     }
   ];
 
   return (
-    <div className="pt-16">
+    <div className="pt-16" style={{ backgroundColor: 'var(--color-bg-primary)' }}>
       {/* Hero Section */}
-      <section className="relative h-96 flex items-center justify-center bg-gray-900">
+      <section className="relative h-96 flex items-center justify-center bg-black">
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40"
           style={{
@@ -61,7 +41,13 @@ const Services = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-5xl font-bold mb-4"
+            className="text-5xl md:text-6xl font-black mb-4"
+            style={{
+              background: 'linear-gradient(135deg, var(--color-gold), var(--color-teal))',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}
           >
             Our Services
           </motion.h1>
@@ -70,35 +56,69 @@ const Services = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-xl"
+            style={{ color: 'var(--color-text-secondary)' }}
           >
             Exceptional amenities for an unforgettable experience
           </motion.p>
         </div>
       </section>
 
-      {/* Services Grid */}
-      <Section>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Complete Hospitality Solutions</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              From luxury accommodation to world-class dining and wellness services, 
-              we provide everything you need for a perfect stay.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <ServiceCard key={index} {...service} index={index} />
-            ))}
-          </div>
+      {/* Services Sections */}
+      <Section className="spacing-xl">
+        <div className="text-center mb-16">
+          <h2 
+            className="text-5xl md:text-6xl font-black mb-6"
+            style={{
+              background: 'linear-gradient(135deg, var(--color-gold), var(--color-teal))',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}
+          >
+            Complete Hospitality Solutions
+          </h2>
+          <p 
+            className="text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed font-medium"
+            style={{ color: 'var(--color-text-secondary)' }}
+          >
+            From luxury accommodation to world-class dining and wellness services, 
+            we provide everything you need for a perfect stay.
+          </p>
+        </div>
+        
+        <div className="space-y-0">
+          {services.map((service, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <EmbeddedServiceSection 
+                {...service} 
+                index={index}
+                reverse={index % 2 === 1}
+              />
+            </motion.div>
+          ))}
         </div>
       </Section>
 
       {/* Additional Services */}
-      <Section className="bg-gray-50">
+      <Section className="bg-gradient-to-br from-gray-800 to-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Additional Amenities</h2>
+            <h2 
+              className="text-4xl md:text-5xl font-black mb-6"
+              style={{
+                background: 'linear-gradient(135deg, var(--color-gold), var(--color-teal))',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}
+            >
+              Additional Amenities
+            </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
@@ -113,11 +133,18 @@ const Services = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="text-center p-6 bg-white rounded-lg shadow-sm"
+                className="text-center p-6 bg-gradient-to-br from-gray-900 to-black rounded-lg shadow-theme cursor-glow border border-gold/20"
               >
                 <div className="text-4xl mb-4">{amenity.icon}</div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">{amenity.title}</h3>
-                <p className="text-gray-600">{amenity.desc}</p>
+                <h3 
+                  className="text-lg font-semibold mb-2"
+                  style={{ color: 'var(--color-text-primary)' }}
+                >
+                  {amenity.title}
+                </h3>
+                <p style={{ color: 'var(--color-text-secondary)' }}>
+                  {amenity.desc}
+                </p>
               </motion.div>
             ))}
           </div>

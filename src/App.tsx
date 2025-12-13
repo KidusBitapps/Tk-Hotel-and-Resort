@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import ScrollToTop from './components/ui/ScrollToTop';
+import ScrollToTopOnRouteChange from './components/ui/ScrollToTopOnRouteChange';
 import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
@@ -11,7 +12,8 @@ import Contact from './pages/Contact';
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen" style={{ backgroundColor: 'var(--color-bg-primary)' }}>
+        <ScrollToTopOnRouteChange />
         <Navbar />
         <main>
           <Routes>

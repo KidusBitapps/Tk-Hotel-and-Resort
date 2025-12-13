@@ -20,13 +20,21 @@ export const FloatingStats = () => {
           transition={{ duration: 0.6, delay: index * 0.1 }}
           viewport={{ once: true }}
           whileHover={{ scale: 1.05, y: -5 }}
-          className="bg-white/90 backdrop-blur-sm rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300"
+          className="bg-gradient-to-br from-gray-900 to-black backdrop-blur-sm rounded-xl p-6 text-center shadow-theme hover:shadow-theme-hover transition-all duration-300 cursor-glow border border-gold/20"
         >
           <div className="text-3xl mb-2">{stat.icon}</div>
-          <div className="text-2xl md:text-3xl font-bold text-gray-900 mb-1">
+          <div 
+            className="text-2xl md:text-3xl font-bold mb-1"
+            style={{
+              background: 'linear-gradient(135deg, var(--color-gold), var(--color-teal))',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}
+          >
             {stat.number}
           </div>
-          <div className="text-sm text-gray-600">{stat.label}</div>
+          <div className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>{stat.label}</div>
         </motion.div>
       ))}
     </div>
@@ -72,17 +80,23 @@ export const InteractiveFeatures = () => {
           transition={{ duration: 0.5, delay: index * 0.1 }}
           viewport={{ once: true }}
           whileHover={{ scale: 1.05, rotateY: 5 }}
-          className="group relative overflow-hidden rounded-2xl p-6 bg-white shadow-lg hover:shadow-2xl transition-all duration-300"
+          className="group relative overflow-hidden rounded-2xl p-6 bg-gradient-to-br from-gray-800 to-gray-900 shadow-theme hover:shadow-theme-hover transition-all duration-300 cursor-glow border border-teal/20"
         >
-          <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
+          <div className="absolute inset-0 bg-gradient-to-br from-gold/10 to-teal/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           <div className="relative z-10">
             <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
               {feature.icon}
             </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-3">
+            <h3 
+              className="text-xl font-bold mb-3"
+              style={{ color: 'var(--color-text-primary)' }}
+            >
               {feature.title}
             </h3>
-            <p className="text-gray-600 leading-relaxed">
+            <p 
+              className="leading-relaxed"
+              style={{ color: 'var(--color-text-secondary)' }}
+            >
               {feature.description}
             </p>
           </div>
